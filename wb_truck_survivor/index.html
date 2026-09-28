@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#1a1e27">
+    <title>VP Truck Survivors</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <main class="game-shell" id="app">
+      <canvas id="gameCanvas" aria-label="Игровая арена VP Truck Survivors"></canvas>
+      <div class="screen-vignette" aria-hidden="true"></div>
+
+      <header class="top-hud">
+        <div class="brand-lockup">
+          <strong>VP Truck Survivors</strong>
+          <span id="locationLabel">Складской двор</span>
+        </div>
+
+        <div class="hud-stack">
+          <div class="hp-meter" aria-label="Прочность грузовика">
+            <span>HP</span>
+            <div><i id="hpBar"></i></div>
+            <b id="hpText">100/100</b>
+          </div>
+
+          <div class="run-stats">
+            <span><b id="waveText">1</b> волна</span>
+            <span id="timerText">0/17 K</span>
+            <span><b id="scoreText">0</b> очков</span>
+            <span><b id="coinText">0</b> деталей</span>
+          </div>
+        </div>
+      </header>
+
+      <aside class="weapon-rail" aria-label="Установленное оружие">
+        <span class="rail-title">Кузов</span>
+        <div id="weaponList" class="weapon-list"></div>
+      </aside>
+
+      <nav class="action-bar" aria-label="Управление забегом">
+        <button id="fullscreenButton" class="icon-button" type="button" aria-label="На весь экран" title="На весь экран">⛶</button>
+        <button id="pauseButton" class="icon-button" type="button" aria-label="Пауза" title="Пауза">II</button>
+        <button id="restartButton" class="icon-button" type="button" aria-label="Перезапуск" title="Перезапуск">R</button>
+      </nav>
+
+      <div class="joystick" id="joystick" aria-hidden="true">
+        <span></span>
+      </div>
+
+      <section class="modal-panel setup-panel" id="setupPanel" aria-label="Подготовка грузовика">
+        <div class="panel-heading">
+          <p>Telegram Mini App prototype</p>
+          <h1>VP Truck Survivors</h1>
+        </div>
+
+        <div class="setup-block">
+          <div class="setup-title">
+            <span>Грузовик</span>
+            <b id="truckStatLine">HP 150 · броня 2 · башня</b>
+          </div>
+          <div class="choice-grid" id="truckChoices"></div>
+        </div>
+
+        <div class="setup-block">
+          <div class="setup-title">
+            <span>Локация</span>
+            <b id="locationStatLine">широкая арена · ровный спавн</b>
+          </div>
+          <div class="choice-grid two" id="locationChoices"></div>
+        </div>
+
+        <button id="startButton" class="primary-button" type="button">Начать забег</button>
+      </section>
+
+      <section class="modal-panel upgrade-panel hidden" id="upgradePanel" aria-label="Сервис между волнами">
+        <div class="panel-heading">
+          <p id="shopSubtitle">Волна закрыта</p>
+          <h2>Сервис между волнами</h2>
+        </div>
+        <div class="shop-summary" id="shopSummary">Получено деталей: 0</div>
+        <div class="upgrade-grid" id="upgradeChoices"></div>
+        <div class="shop-actions">
+          <button id="continueButton" class="primary-button" type="button">Следующая волна</button>
+        </div>
+      </section>
+
+      <section class="modal-panel game-over-panel hidden" id="gameOverPanel" aria-label="Итог забега">
+        <div class="panel-heading">
+          <p>Грузовик эвакуирован</p>
+          <h2>Забег окончен</h2>
+        </div>
+        <div class="final-score">
+          <span id="finalScore">0</span>
+          <b>очков</b>
+        </div>
+        <div class="final-grid">
+          <span><b id="finalWave">1</b> волн</span>
+          <span><b id="finalKills">0</b> дронов</span>
+          <span><b id="bestScore">0</b> рекорд</span>
+        </div>
+        <div class="final-details" id="finalStats" aria-label="Статистика забега"></div>
+        <div class="shop-actions">
+          <button id="sendScoreButton" class="secondary-button hidden" type="button">Отправить результат</button>
+          <button id="playAgainButton" class="primary-button" type="button">Новый забег</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./game.js"></script>
+  </body>
+</html>
